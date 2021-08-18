@@ -5,12 +5,12 @@ import os
 if not os.path.exists('./jobs_104'):
     os.mkdir("./jobs_104")
 
-url = 'https://www.104.com.tw/jobs/search/?keyword={}&page={}'
+url = 'https://www.104.com.tw/jobs/search/?ro=1&keyword={}&page={}'
 userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36"
 
-headers = { "User-Agent" : userAgent }
+headers = { "User-Agent" : userAgent ,"Referer" : 'https://www.104.com.tw/'}
 keywords = ['雲端數據分析師','資料科學家']
-# keywords = '%20'.join(keywords_list)
+
 
 page = 1
 for i in range(1,10):
@@ -30,8 +30,13 @@ for i in range(1,10):
         city = jobSoup.select('li')[3].text
         experience = jobSoup.select('li')[4].text
         degree = jobSoup.select('li')[5].text
-        jobContent = jobSoup.select('p[class="job-list-item__info b-clearfix b-content"]')[0].text
         jobUrl = 'https:' + jobSoup.select('a')[0]['href']
+        # jobContent1 = jobSoup.select('p[class="job-list-item__info b-clearfix b-content"]')[0].text.replace('：',"-")
+        salary = jobSoup.select('span[class="b-tag--default"]')[0].text
+        resContent = requests.get(jobUrl, headers=headers)
+        soupContent = BeautifulSoup(resContent.text, 'html.parser')
+        contents = soupContent.select('meta[name="description"]')[0]
+        # jobContent = soupContent.select('meta')[4]['content'][12:].replace('：',"-").split('薪資')[0]
 
         # print(job)
         # print(company)
@@ -41,6 +46,9 @@ for i in range(1,10):
         # print(experience)
         # print(degree)
         # print(jobContent)
+        # print('---')
+        # print(jobContent1)
+        # print(salary)
         # print(jobUrl)
         # print('===============')
 
@@ -52,12 +60,11 @@ for i in range(1,10):
         openings += '地區: ' + city + '\n'
         openings += '經驗: ' + experience + '\n'
         openings += '學位: ' + degree + '\n'
+        openings += '薪資: ' + salary + '\n'
+        openings += '網址: ' + jobUrl# + '\n'
         # openings += '工作內容: ' + jobContent + '\n'
-        openings += '網址: ' + jobUrl
-
-
         print(openings)
-
+        print('===============')
 
         try:
             with open("./jobs_104/{}.txt".format(job), "w", encoding="utf-8") as f:
