@@ -12,9 +12,9 @@ import pandas as pd
 # create flask server
 app = Flask(__name__)
 # your linebot message API - Channel access token (from LINE Developer)
-line_bot_api = LineBotApi('T9vMMKzQTDhvdsFJWFDtjVKcI56KL0bx3cyKOTN8jN3AWG4lrzMRP1C3Sc69c+a08iHOeqHDkMOvDOSyqD5+zwCdqdSSHTDSBz2WGJ3nezkX5lLZ6A23tgNlwLRHl/X5mQaSt0UBvSPHJpFmp9hHiAdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('')
 # your linebot message API - Channel secret
-handler = WebhookHandler('9bfda1bf917044c86fe056c26660e234')
+handler = WebhookHandler('')
 
 
 # linebot接收訊息
@@ -60,8 +60,8 @@ def handle_image_message(event):
             f.write(chunk)
     
     # Azure Form Recognizer
-    endpoint = "https://formfong.cognitiveservices.azure.com/"
-    credential = AzureKeyCredential("61e429884959460abc7c4955f3a108be")
+    endpoint = ""
+    credential = AzureKeyCredential("")
 
     form_recognizer_client = FormRecognizerClient(endpoint, credential)
     
