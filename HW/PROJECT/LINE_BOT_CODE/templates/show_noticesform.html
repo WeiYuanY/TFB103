@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Notices_Form</title>
+</head>
+<body>
+<div>
+    <table border="1" width="1500">
+        <thead>
+            <tr>
+                {% for c in column %}
+                <th>
+                    {{ c }}
+                </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for noticeform in noticeform_data %}
+            <tr>
+                {% for noticeform_info in noticeform %}
+                <td>
+                    {{ noticeform_info }}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
