@@ -116,7 +116,7 @@ def handle_image_message(event):
             f.write(chunk)
 
 
-
+    # Azure Form Recognizer
     endpoint = ""
     credential = AzureKeyCredential("")
 
