@@ -19,10 +19,9 @@ if not os.path.exists('./images'):
 # create flask server
 app = Flask(__name__)
 # your linebot message API - Channel access token (from LINE Developer)
-line_bot_api = LineBotApi(
-    '0mqiSE/VDhcb56P3B5bVo1UrsoW3kmDwjinNMGQ6NNZqMAXjcJ2XpoX+a7GYLLViIFRepOsopCuJaYIQJM+WWt36n++92aBiAKVyGQb6Gy36JLUTAO2iqhvpQMjX99MPvugpalLfG2q6ODzLy8k6hQdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('')
 # your linebot message API - Channel secret
-handler = WebhookHandler('9d06d17c8cfaf212ed1eca5a5fa3e990')
+handler = WebhookHandler('')
 
 
 # linebot接收訊息
@@ -45,9 +44,9 @@ def callback():
     return 'OK'
 
 
-host = 'testtest12322.azurewebsites.net'  # 主機
-endpoint_key = "0d45c53d-1054-4798-820a-1bea848e3c3c"  # 授權碼
-kb = "5758b025-bb88-4178-9a4a-35253a065872"  # GUID碼
+host = ''  # 主機
+endpoint_key = ""  # 授權碼
+kb = ""  # GUID碼
 method = "/qnamaker/knowledgebases/" + kb + "/generateAnswer"
 
 
@@ -118,8 +117,8 @@ def handle_image_message(event):
 
 
 
-    endpoint = "https://testform1111.cognitiveservices.azure.com/"
-    credential = AzureKeyCredential("3254d83e14b44f44bc4abad90a169771")
+    endpoint = ""
+    credential = AzureKeyCredential("")
 
     form_recognizer_client = FormRecognizerClient(endpoint, credential)
 
